@@ -70,7 +70,7 @@ public class InformeController {
 
         // Aquí puedes utilizar los parámetros recibidos para crear tu objeto Informe
         Informe informe = new Informe();
-        informe.id((long) idInforme);
+        informe.idInforme((long) idInforme);
         informe.setIdInforme1(idInforme1);
         informe.setIdContact(idContact);
         informe.setHorasTrabajadas(horasTrabajadas);
