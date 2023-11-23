@@ -53,7 +53,7 @@ public class InformeController {
             @RequestParam("horasTrabajadas") double horasTrabajadas,
             @RequestParam("horaInicio") String horaInicio,
             @RequestParam("horaFinalizado") String horaFinalizado,
-            @RequestParam("idInforme") Long idInforme) {
+            @RequestParam("idInforme") double idInforme) {
 
         // Formato de fecha esperado
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
@@ -70,7 +70,7 @@ public class InformeController {
 
         // Aquí puedes utilizar los parámetros recibidos para crear tu objeto Informe
         Informe informe = new Informe();
-        informe.id(idInforme);
+        informe.id((long) idInforme);
         informe.setIdInforme1(idInforme1);
         informe.setIdContact(idContact);
         informe.setHorasTrabajadas(horasTrabajadas);
