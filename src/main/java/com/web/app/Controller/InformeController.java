@@ -46,7 +46,7 @@ public class InformeController {
         Informe createdInforme = informeService.createInforme(informe);
         return new ResponseEntity<>(createdInforme, HttpStatus.CREATED);
     }
-      @PostMapping(consumes = "application/x-www-form-urlencoded;charset=UTF-8")
+      @PostMapping("/API" consumes = "application/x-www-form-urlencoded;charset=UTF-8")
     public ResponseEntity<Informe> createInforme(
             @RequestParam("idInforme1") String idInforme1,
             @RequestParam("idContact") String idContact,
