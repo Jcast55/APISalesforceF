@@ -52,7 +52,8 @@ public class InformeController {
             @RequestParam("idContact") String idContact,
             @RequestParam("horasTrabajadas") double horasTrabajadas,
             @RequestParam("horaInicio") String horaInicio,
-            @RequestParam("horaFinalizado") String horaFinalizado) {
+            @RequestParam("horaFinalizado") String horaFinalizado,
+            @RequestParam("idInforme") int idInforme) {
 
         // Formato de fecha esperado
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
