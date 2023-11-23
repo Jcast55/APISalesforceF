@@ -1,6 +1,9 @@
 package com.web.app.Controller;
 
 import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,7 +46,6 @@ public class InformeController {
         Informe createdInforme = informeService.createInforme(informe);
         return new ResponseEntity<>(createdInforme, HttpStatus.CREATED);
     }
-
       @PostMapping(consumes = "application/x-www-form-urlencoded;charset=UTF-8")
     public ResponseEntity<Informe> createInforme(
             @RequestParam("idInforme1") String idInforme1,
@@ -52,13 +54,26 @@ public class InformeController {
             @RequestParam("horaInicio") String horaInicio,
             @RequestParam("horaFinalizado") String horaFinalizado) {
 
+        // Formato de fecha esperado
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+
+        // Convierte las cadenas de fecha a objetos Date
+        Date fechaInicio = null;
+        Date fechaFinalizado = null;
+        try {
+            fechaInicio = dateFormat.parse(horaInicio);
+            fechaFinalizado = dateFormat.parse(horaFinalizado);
+        } catch (ParseException e) {
+            e.printStackTrace(); // Maneja la excepción según tus necesidades
+        }
+
         // Aquí puedes utilizar los parámetros recibidos para crear tu objeto Informe
         Informe informe = new Informe();
         informe.setIdInforme1(idInforme1);
         informe.setIdContact(idContact);
         informe.setHorasTrabajadas(horasTrabajadas);
-        informe.setHoraInicio(horaInicio);
-        informe.setHoraFinalizado(horaFinalizado);
+        informe.setHoraInicio(fechaInicio);
+        informe.setHoraFinalizado(fechaFinalizado);
 
         // Luego, llama a tu servicio para crear el informe
         Informe createdInforme = informeService.createInforme(informe);
