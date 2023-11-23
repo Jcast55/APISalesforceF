@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+
 import com.web.app.Model.Informe;
 import com.web.app.Service.InformeService;
 
@@ -40,6 +41,29 @@ public class InformeController {
     @PostMapping
     public ResponseEntity<Informe> createInforme(@RequestBody Informe informe) {
         Informe createdInforme = informeService.createInforme(informe);
+        return new ResponseEntity<>(createdInforme, HttpStatus.CREATED);
+    }
+
+      @PostMapping(consumes = "application/x-www-form-urlencoded;charset=UTF-8")
+    public ResponseEntity<Informe> createInforme(
+            @RequestParam("idInforme1") String idInforme1,
+            @RequestParam("idContact") String idContact,
+            @RequestParam("horasTrabajadas") double horasTrabajadas,
+            @RequestParam("horaInicio") String horaInicio,
+            @RequestParam("horaFinalizado") String horaFinalizado) {
+
+        // Aquí puedes utilizar los parámetros recibidos para crear tu objeto Informe
+        Informe informe = new Informe();
+        informe.setIdInforme1(idInforme1);
+        informe.setIdContact(idContact);
+        informe.setHorasTrabajadas(horasTrabajadas);
+        informe.setHoraInicio(horaInicio);
+        informe.setHoraFinalizado(horaFinalizado);
+
+        // Luego, llama a tu servicio para crear el informe
+        Informe createdInforme = informeService.createInforme(informe);
+
+        // Devuelve la respuesta adecuada
         return new ResponseEntity<>(createdInforme, HttpStatus.CREATED);
     }
 
